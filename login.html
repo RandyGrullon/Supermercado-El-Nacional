@@ -7,22 +7,23 @@
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="/css/style-login.css" />
+    <link rel="stylesheet" href="css/style-login.css" />
     <title>Supermercado El Nacional</title>
   </head>
   <body>
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+
+          <form onsubmit="Login()" class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username" id="email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" id="pass"/>
             </div>
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Si no tienes cuenta, utiliza una cuenta de estas:</p>
@@ -41,6 +42,8 @@
               </a>
             </div>
           </form>
+
+
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
@@ -102,7 +105,29 @@
         </div>
       </div>
     </div>
+    <script src="js/app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
 
-    <script src="/js/app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCol-mE8lTMCVL0qkxlJblHWtAaZs0fW7s",
+        authDomain: "procesos-26465.firebaseapp.com",
+        projectId: "procesos-26465",
+        storageBucket: "procesos-26465.appspot.com",
+        messagingSenderId: "46775708728",
+        appId: "1:46775708728:web:4323a7209d2e0f22720acd"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    
   </body>
 </html>
