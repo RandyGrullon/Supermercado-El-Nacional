@@ -14,8 +14,6 @@ sign_in_btn.addEventListener("click", () => {
   });
 
 
-
-
 function Login(){
     
     var email= document.getElementById("email").value;

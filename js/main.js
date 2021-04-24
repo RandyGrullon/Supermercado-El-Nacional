@@ -1,7 +1,32 @@
+
 jQuery(document).ready(function($){
     
-    // jQuery sticky Menu
     
+    var  logout= document.getElementById("logoutHome"); 
+    var  login = document.getElementById("loginHome");
+    var  email = document.getElementById("user");
+    
+    
+    firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+    console.log(user);
+    // display logout button// 
+    logout.classList.remove("hidden");
+    email.classList.remove("hidden");
+    // display loggeduser email // 
+    email.innerText= user.email;
+
+        // hides login button 
+    login.classList.add("hidden");
+    }
+    else {
+        logout.classList.add("hidden");
+        email.classList.add("hidden");
+        login.classList.remove("hidden");
+        }
+    })
+
+
 	$(".mainmenu-area").sticky({topSpacing:0});
     
     
@@ -85,3 +110,13 @@ jQuery(document).ready(function($){
         offset: 95
     })      
 });
+
+function Logout(){
+    firebase.auth().signOut().then(() => {
+
+     
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
+}

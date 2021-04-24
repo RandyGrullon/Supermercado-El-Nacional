@@ -29,6 +29,8 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+   
+   
   </head>
   <body>
    
@@ -38,11 +40,11 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li class="hidden"><a href="#"><i class="fa fa-user"></i> My Account</a></li><!-- Solo se muestra cuando se está logeado -->
+                            <li class="hidden"id="user"><a href="#" ><i class="fa fa-user"></i> My Account</a></li><!-- Solo se muestra cuando se está logeado -->
                             <li><a href="cart.html"><i class="fa fa-cart-arrow-down"></i> My Cart</a></li>
                             <li><a href="checkout.html"><i class="fa fa-money"></i> Checkout</a></li>
-                            <li><a href="login.html"><i class="fa fa-sign-in"></i> Login</a></li>
-                            <li class="hidden"><a href="#"><i class="fa fa-power-off"></i> Logout</a></li><!--Solo se muestra cuando están logeados -->                           
+                            <li><a href="login.html" id="loginHome"><i class="fa fa-sign-in"></i> Login</a></li>
+                            <li class="hidden" id="logoutHome"><a href="#" onclick="Logout()"><i class="fa fa-power-off"></i> Logout</a></li><!--Solo se muestra cuando están logeados -->                           
                         </ul>
                     </div>
                 </div>
@@ -593,8 +595,30 @@
                 </div>
             </div>
         </div>
-    </div> <!-- End footer bottom area -->
-   
+    </div> 
+    <!-- End footer bottom area -->
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+        
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCol-mE8lTMCVL0qkxlJblHWtAaZs0fW7s",
+        authDomain: "procesos-26465.firebaseapp.com",
+        projectId: "procesos-26465",
+        storageBucket: "procesos-26465.appspot.com",
+        messagingSenderId: "46775708728",
+        appId: "1:46775708728:web:4323a7209d2e0f22720acd"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
     
@@ -610,5 +634,7 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+    
+   
   </body>
 </html>
