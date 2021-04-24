@@ -50,12 +50,13 @@ function createCart(){
 jQuery(document).ready(function($){
     
     
+
     var  logout= document.getElementById("logoutHome"); 
     var  login = document.getElementById("loginHome");
     var  email = document.getElementById("user");
     var  items = [] ;
-    var  cart = [] ; 
-
+    var  carts = [] ; 
+    
     // popula array items/ 
     var docRef = db.collection("Item").get().then((snapshot) => { 
 
@@ -64,9 +65,18 @@ jQuery(document).ready(function($){
             items.unshift(element.data());
             
         });
+    
+    // popular array cart del usuario logeado/ 
+    // var cartRef = db.collection("Cart").get().then((snapshot) => { 
 
-    // popula array cart del usuario logeado/ 
-   
+    //     snapshot.docs.forEach(element => {
+            
+    //         carts.unshift(element.data());
+            
+    //     });
+    //     console.log(carts);
+    // });
+
         document.getElementById('test1').innerHTML = items.map(item => 
             `<div class="single-wid-product">
                 <a href="single-product.html"><img src=${item.img} alt="" class="product-thumb"></a>
@@ -144,8 +154,6 @@ jQuery(document).ready(function($){
 
         // hides login button 
     login.classList.add("hidden");
-
-
 
     //
     
