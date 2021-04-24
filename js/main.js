@@ -1,4 +1,51 @@
 
+function Logout(){
+    firebase.auth().signOut().then(() => {
+
+     // close carrito // 
+
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
+}
+
+function AddItem(id){
+    // selected item price 
+
+    var itemPrice = document.getElementById("");
+
+    // selectores carrito 
+    var cart = document.getElementsByClassName("shopping-item"); 
+    var amount =  document.getElementsByClassName('cart-amunt');
+    var count = document.getElementsByClassName("product-count");
+    
+    // trigger cambio monto en el carrito  // 
+    count[0].innerText = parseInt(count[0].innerText) +1;
+
+    amount[0].innerText = parseFloat(amount[0].innerText) + parseFloat(itemPrice)  ;
+    console.log(parseFloat(amount[0].innerText).toPrecision(2));
+
+    console.log(Event.srcElement);
+    console.log(this);
+   
+    //agregar item en firebase al objeto carrito del usuario en curso // 
+
+    // agrega un carrito 
+    var frankDocRef = db.collection("Cart").doc("frank");
+        frankDocRef.set({
+            name: "Frank",
+            favorites: { food: "Pizza", color: "Blue", subject: "recess" },
+            age: 12
+        });
+
+
+}
+
+
+function createCart(){
+
+}
 
 jQuery(document).ready(function($){
     
@@ -6,17 +53,21 @@ jQuery(document).ready(function($){
     var  logout= document.getElementById("logoutHome"); 
     var  login = document.getElementById("loginHome");
     var  email = document.getElementById("user");
-    var  mapa = [] ;
+    var  items = [] ;
+    var  cart = [] ; 
+
+    // popula array items/ 
     var docRef = db.collection("Item").get().then((snapshot) => { 
 
         snapshot.docs.forEach(element => {
             
-            mapa.unshift(element.data());
-            console.log(element.data());
-           console.log(typeof(mapa));
+            items.unshift(element.data());
+            
         });
-        
-        document.getElementById('test1').innerHTML = mapa.map(item => 
+
+    // popula array cart del usuario logeado/ 
+   
+        document.getElementById('test1').innerHTML = items.map(item => 
             `<div class="single-wid-product">
                 <a href="single-product.html"><img src=${item.img} alt="" class="product-thumb"></a>
                 <h2><a href="single-product.html">${item.nombre}</a></h2>
@@ -37,13 +88,13 @@ jQuery(document).ready(function($){
 
 
 
-        document.getElementById('product-carousel').innerHTML = mapa.map(item=>
+        document.getElementById('product-carousel').innerHTML = items.map(item=>
             
-         ` <div class="single-product">
+         ` <div class="single-product" id="${item.nombre}">
                 <div class="product-f-image" style="min-height: 225px">
                     <img src="${item.img}" alt="">
                     <div class="product-hover">
-                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                        <a  class="add-to-cart-link" onclick="AddItem(this.id)"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                         <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                     </div>
                 </div>
@@ -53,10 +104,10 @@ jQuery(document).ready(function($){
                 <div class="product-carousel-price">
                     <ins>${item.precio}</ins> <del>$800.00</del>
                 </div> 
-            </div>`
+            </div> `
 
         ).join('')    
-            console.log(mapa);
+           
 
             $('.product-carousel').owlCarousel({
                 loop:true,
@@ -80,7 +131,7 @@ jQuery(document).ready(function($){
     
 
 
-    console.log(docRef);
+    
 
     firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -93,6 +144,13 @@ jQuery(document).ready(function($){
 
         // hides login button 
     login.classList.add("hidden");
+
+
+
+    //
+    
+
+
     }
     else {
         logout.classList.add("hidden");
@@ -170,17 +228,3 @@ jQuery(document).ready(function($){
         offset: 95
     })      
 });
-
-function Logout(){
-    firebase.auth().signOut().then(() => {
-
-     
-        // Sign-out successful.
-      }).catch((error) => {
-        // An error happened.
-      });
-}
-
-function addItem(){
-   
-}
