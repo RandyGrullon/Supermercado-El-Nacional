@@ -307,8 +307,8 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="single-product-widget">
-                        <div class="single-wid-product">
+                    <div class="single-product-widget " id="test1">
+                        <!-- <div class="single-wid-product">
                             <a href="single-product.html"><img src="img/mayonesa.png" alt="" class="product-thumb"></a>
                             <h2><a href="single-product.html">Mayonesa</a></h2>
                             <div class="product-wid-rating">
@@ -349,7 +349,7 @@
                             <div class="product-wid-price">
                                 <ins>$160.00</ins> <del>$255.00</del>
                             </div>                            
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -399,9 +399,10 @@
 
         
         <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-firestore.js"></script>
 
     <script>
-      
+      var db;
       var firebaseConfig = {
         apiKey: "AIzaSyCol-mE8lTMCVL0qkxlJblHWtAaZs0fW7s",
         authDomain: "procesos-26465.firebaseapp.com",
@@ -412,6 +413,7 @@
       };
     
       firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
     </script>
     
     <script src="https://code.jquery.com/jquery.min.js"></script>

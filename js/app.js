@@ -4,14 +4,23 @@ const container = document.querySelector(".container");
 sign_up_btn.addEventListener("click", () => {
   
   container.classList.add("sign-up-mode");
-
-  
-
-
   });
+
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
   });
+
+  
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+    window.location.href='Index.html';
+       
+    }
+    else {
+      
+        }
+    })
+
 
 
 function Login(){

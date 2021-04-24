@@ -1,12 +1,48 @@
 
+
 jQuery(document).ready(function($){
     
     
     var  logout= document.getElementById("logoutHome"); 
     var  login = document.getElementById("loginHome");
     var  email = document.getElementById("user");
+    var  mapa = [] ;
+    var docRef = db.collection("Item").get().then((snapshot) => { 
+
+        snapshot.docs.forEach(element => {
+            
+            mapa.unshift(element.data());
+            console.log(element.data());
+           console.log(typeof(mapa));
+        });
+        
+        document.getElementById('test1').innerHTML = mapa.map(item => 
+            `<div class="single-wid-product">
+                <a href="single-product.html"><img src=${item.img} alt="" class="product-thumb"></a>
+                <h2><a href="single-product.html">${item.nombre}</a></h2>
+                <div class="product-wid-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="product-wid-price">
+                    <ins>${item.precio}</ins> <del>$175.00</del>
+                </div>       
+            </div>`
     
     
+            ).join('')
+
+            console.log(mapa);
+    });
+    
+    
+
+
+    console.log(docRef);
+
     firebase.auth().onAuthStateChanged(user => {
     if (user) {
     console.log(user);
@@ -88,6 +124,7 @@ jQuery(document).ready(function($){
     });    
     
     
+
     // Bootstrap Mobile Menu fix
     $(".navbar-nav li a").click(function(){
         $(".navbar-collapse").removeClass('in');
