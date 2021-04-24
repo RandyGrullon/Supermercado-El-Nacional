@@ -35,7 +35,46 @@ jQuery(document).ready(function($){
     
             ).join('')
 
+
+
+        document.getElementById('product-carousel').innerHTML = mapa.map(item=>
+            
+         ` <div class="single-product">
+                <div class="product-f-image" style="min-height: 225px">
+                    <img src="${item.img}" alt="">
+                    <div class="product-hover">
+                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                    </div>
+                </div>
+                
+                <h2><a href="single-product.html">${item.nombre}</a></h2>
+                
+                <div class="product-carousel-price">
+                    <ins>${item.precio}</ins> <del>$800.00</del>
+                </div> 
+            </div>`
+
+        ).join('')    
             console.log(mapa);
+
+            $('.product-carousel').owlCarousel({
+                loop:true,
+                nav:true,
+                margin:20,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                    },
+                    600:{
+                        items:3,
+                    },
+                    1000:{
+                        items:5,
+                    }
+                }
+            });  
     });
     
     
@@ -66,23 +105,7 @@ jQuery(document).ready(function($){
 	$(".mainmenu-area").sticky({topSpacing:0});
     
     
-    $('.product-carousel').owlCarousel({
-        loop:true,
-        nav:true,
-        margin:20,
-        responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-            },
-            600:{
-                items:3,
-            },
-            1000:{
-                items:5,
-            }
-        }
-    });  
+    
     
     $('.related-products-carousel').owlCarousel({
         loop:true,
@@ -156,4 +179,8 @@ function Logout(){
       }).catch((error) => {
         // An error happened.
       });
+}
+
+function addItem(){
+   
 }
