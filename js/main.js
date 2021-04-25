@@ -69,11 +69,11 @@ jQuery(document).ready(function($){
 
         document.getElementById('product-carousel').innerHTML = items.map(item=>
             
-         ` <div class="single-product" id="${item.nombre}">
+         ` <div class="single-product" >
                 <div class="product-f-image" style="min-height: 225px">
                     <img src="${item.img}" alt="">
                     <div class="product-hover">
-                        <a  class="add-to-cart-link" onclick="AddItem(this.id)"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                        <a  class="add-to-cart-link" onclick="AddItem(this)" id="${item.nombre}"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                         <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                     </div>
                 </div>
