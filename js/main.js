@@ -10,37 +10,6 @@ function Logout(){
       });
 }
 
-function AddItem(id){
-    // selected item price 
-
-    var itemPrice = document.getElementById("");
-
-    // selectores carrito 
-    var cart = document.getElementsByClassName("shopping-item"); 
-    var amount =  document.getElementsByClassName('cart-amunt');
-    var count = document.getElementsByClassName("product-count");
-    
-    // trigger cambio monto en el carrito  // 
-    count[0].innerText = parseInt(count[0].innerText) +1;
-
-    amount[0].innerText = parseFloat(amount[0].innerText) + parseFloat(itemPrice)  ;
-    console.log(parseFloat(amount[0].innerText).toPrecision(2));
-
-    console.log(Event.srcElement);
-    console.log(this);
-   
-    //agregar item en firebase al objeto carrito del usuario en curso // 
-
-    // agrega un carrito 
-    var frankDocRef = db.collection("Cart").doc("frank");
-        frankDocRef.set({
-            name: "Frank",
-            favorites: { food: "Pizza", color: "Blue", subject: "recess" },
-            age: 12
-        });
-
-
-}
 
 
 function createCart(){
