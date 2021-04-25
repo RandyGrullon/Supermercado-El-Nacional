@@ -1,27 +1,146 @@
+
+function Logout(){
+    firebase.auth().signOut().then(() => {
+
+     // close carrito // 
+
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
+}
+
+
+
+function createCart(){
+
+}
+
 jQuery(document).ready(function($){
     
-    // jQuery sticky Menu
     
+
+    var  logout= document.getElementById("logoutHome"); 
+    var  login = document.getElementById("loginHome");
+    var  email = document.getElementById("user");
+    var  items = [] ;
+    var  carts = [] ; 
+    
+    // popula array items/ 
+    var docRef = db.collection("Item").get().then((snapshot) => { 
+
+        snapshot.docs.forEach(element => {
+            
+            items.unshift(element.data());
+            
+        });
+    
+    // popular array cart del usuario logeado/ 
+    // var cartRef = db.collection("Cart").get().then((snapshot) => { 
+
+    //     snapshot.docs.forEach(element => {
+            
+    //         carts.unshift(element.data());
+            
+    //     });
+    //     console.log(carts);
+    // });
+
+        document.getElementById('test1').innerHTML = items.map(item => 
+            `<div class="single-wid-product">
+                <a href="single-product.html"><img src=${item.img} alt="" class="product-thumb"></a>
+                <h2><a href="single-product.html">${item.nombre}</a></h2>
+                <div class="product-wid-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="product-wid-price">
+                    <ins>${item.precio}</ins> <del>$175.00</del>
+                </div>       
+            </div>`
+    
+    
+            ).join('')
+
+
+
+        document.getElementById('product-carousel').innerHTML = items.map(item=>
+            
+         ` <div class="single-product" >
+                <div class="product-f-image" style="min-height: 225px">
+                    <img src="${item.img}" alt="">
+                    <div class="product-hover">
+                        <a  class="add-to-cart-link" onclick="AddItem(this)" id="${item.nombre}"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                    </div>
+                </div>
+                
+                <h2><a href="single-product.html">${item.nombre}</a></h2>
+                
+                <div class="product-carousel-price">
+                    <ins>${item.precio}</ins> <del>$800.00</del>
+                </div> 
+            </div> `
+
+        ).join('')    
+           
+
+            $('.product-carousel').owlCarousel({
+                loop:true,
+                nav:true,
+                margin:20,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                    },
+                    600:{
+                        items:3,
+                    },
+                    1000:{
+                        items:5,
+                    }
+                }
+            });  
+    });
+    
+    
+
+
+    
+
+    firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+    console.log(user);
+    // display logout button// 
+    logout.classList.remove("hidden");
+    email.classList.remove("hidden");
+    // display loggeduser email // 
+    email.innerText= user.email;
+
+        // hides login button 
+    login.classList.add("hidden");
+
+    //
+    
+
+
+    }
+    else {
+        logout.classList.add("hidden");
+        email.classList.add("hidden");
+        login.classList.remove("hidden");
+        }
+    })
+
+
 	$(".mainmenu-area").sticky({topSpacing:0});
     
     
-    $('.product-carousel').owlCarousel({
-        loop:true,
-        nav:true,
-        margin:20,
-        responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-            },
-            600:{
-                items:3,
-            },
-            1000:{
-                items:5,
-            }
-        }
-    });  
+    
     
     $('.related-products-carousel').owlCarousel({
         loop:true,
@@ -63,6 +182,7 @@ jQuery(document).ready(function($){
     });    
     
     
+
     // Bootstrap Mobile Menu fix
     $(".navbar-nav li a").click(function(){
         $(".navbar-collapse").removeClass('in');
@@ -85,4 +205,3 @@ jQuery(document).ready(function($){
         offset: 95
     })      
 });
-
