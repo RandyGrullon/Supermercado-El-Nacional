@@ -192,9 +192,9 @@ z-index: 9;
   top: 0;
   width: 100%;
 }
-.slide-one {background-image: url(img/banner1.JPG)}
-.slide-two {background-image: url(img/banner2.JPG)}
-.slide-three {background-image: url(img/banner3.JPG)}
+.slide-one {background-image: url(../img/banner1.JPG)}
+.slide-two {background-image: url(../img/banner2.JPG)}
+.slide-three {background-image: url(../img/banner3.JPG)}
 .slide-text {color: #fff;font-size: 18px;font-weight: 200}
 .slide-text h2 {
   font-size: 45px;font-weight: 200

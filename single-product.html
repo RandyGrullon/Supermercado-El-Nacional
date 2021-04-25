@@ -79,7 +79,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Carito - <span class="cart-amunt">$1400.00</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.html">Carito - <span class="cart-amunt">0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">0</span></a>
                     </div>
                 </div>
             </div>
@@ -100,8 +100,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Inicio</a></li>
-                        <li><a href="single-product.html">Producto</a></li>
-                        <li class="active"><a href="cart.html">Carrito</a></li>
+                        <li class="active"><a href="single-product.html">Producto</a></li>
+                        <li ><a href="cart.html">Carrito</a></li>
                     </ul>
                 </div>  
             </div>
@@ -250,7 +250,28 @@
         </div>
     </div> 
    
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+
+
+        
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-firestore.js"></script>
+
+    <script>
+      var db;
+      var firebaseConfig = {
+        apiKey: "AIzaSyCol-mE8lTMCVL0qkxlJblHWtAaZs0fW7s",
+        authDomain: "procesos-26465.firebaseapp.com",
+        projectId: "procesos-26465",
+        storageBucket: "procesos-26465.appspot.com",
+        messagingSenderId: "46775708728",
+        appId: "1:46775708728:web:4323a7209d2e0f22720acd"
+      };
     
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+    </script>
     <script src="https://code.jquery.com/jquery.min.js"></script>
     
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -264,5 +285,8 @@
     
     
     <script src="js/main.js"></script>
+    
+    <script src="js/cart.js"></script>
+
   </body>
 </html>
